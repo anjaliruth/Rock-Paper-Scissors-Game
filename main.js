@@ -1,80 +1,98 @@
-// TASK 1
+//Rock Paper Scissors plan
 
-let options = ["rock", "paper", "scissors"];
+// get user move
+//get computer move
+//compare moves and store scores and ties,
+//alert winner
+//ask if player wants to play again
 
-//TASK 2
-//Function here
 
-function rPS(playerMove, computerMove) {
-  alert(
-    `Your move is ${playerMove} and the computer's move is ${computerMove}`
-  );
-  // if both are either rock, paper or scissors = draw
-  if (playerMove === computerMove) {
-    alert("you draw");
-    return 0;
-  }
-  // if user is rock & computer is scissors = userwins
-  // if user is paper & computer is rock = userwins
-  // if user is scissors & computer is paper = userwins
-
-  //else if??
-  else if (
-    (playerMove === options[1] && computerMove === options[0]) || //user paper comp rock
-    (playerMove === options[2] && computerMove === options[1]) || //user scissors comp paper
-    (playerMove === options[0] && computerMove === options[2]) //user rock comp scissors
-  ) {
-    alert("you win");
-    return 1;
-  } else {
-    alert("you lose");
-    return -1;
-  }
+//ask for username
+let username = prompt("Please enter a username")
+while (!username.match (/^[A-Z][a-zA-Z0-9]{0,9}$/)) 
+{
+    username=prompt("Username must be 10 characters or less and start with a capital letter.")
 }
 
-// TASK 5
-let username = prompt(`What is your username? `);
 
-while (!username.match(/^[A-Z][a-zA-z0-9]{0,9}$/)) {
-  username = prompt(
-    `Please enter a username with:\n10 characters or less \n starting with a capital letter`
-  );
-}
-let playerMove = prompt(`Rock, Paper or Scissors, ${username}?`);
-let computerMove = options[Math.floor(Math.random() * options.length)];
 
-let ties = 0;
-let wins = 0;
-let loss = 0;
-let score = 0;
-
-function stats(outcome) {
-  score += outcome;
-  if (outcome === 0) {
-    ties += 1;
-  } else if (outcome === 1) {
-    wins += 1;
-  } else {
-    loss += 1;
+//get user move
+function getUserMove() {
+    let userMove = prompt(`Rock, Paper, or Scissors? ${username}`).toLowerCase();
+    while (
+      userMove !== "rock" &&
+      userMove !== "paper" &&
+      userMove !== "scissors"
+    ) {
+      userMove = prompt("Please enter only 'Rock', 'Paper', or 'Scissors'.");
+    }
+    numGames ++
+    return userMove;
   }
-}
-
-let numOfGames = 1;
-let outcome = rPS(playerMove, computerMove);
-stats(outcome);
-let tryAgain = prompt(`Do you want to try again,${username}? (yes or no)`);
-while (tryAgain === "yes") {
-  playerMove = prompt(`Rock, Paper or Scissors? ${username}`);
-  computerMove = options[Math.floor(Math.random() * options.length)];
-  outcome = rPS(playerMove, computerMove);
-  stats(outcome);
-  numOfGames++;
-  tryAgain = prompt(`Do you want to try again,${username}? (yes or no)`);
-  if (tryAgain !== "yes") {
-    break;
+  
+  //get computer move
+  function getComputerMove() {
+    let options = ["rock", "paper", "scissors"];
+    let i = Math.floor(Math.random() * options.length);
+    let computerMove = options[i];
+    return computerMove;
   }
-}
-
-alert(
-  `You have played ${numOfGames} games.\nYour score is ${score}\nStats:\nNumber of wins: ${wins}\nNumber of losses: ${loss}\nNumber of ties: ${ties}`
-);
+  
+  //inform user about the moves
+  function alertMoves(userMove, computerMove) {
+    alert(`Your move is ${userMove} and the computer's move is ${computerMove}`);
+  }
+  
+  let userScore = 0;
+  let userWins = 0;
+  let userLoss = 0;
+  let userTies = 0;
+  let numGames = 0;
+  
+  //compare user move and computerMove
+  function getOutcome(userMove, computerMove) {
+    if (
+      (userMove === "rock" && computerMove === "rock") ||
+      (userMove === "paper" && computerMove === "paper") ||
+      (userMove === "scissors" && computerMove === "scissors")
+    ) {
+      alert("You draw");
+      userTies++;
+    } else if (
+      (userMove === "rock" && computerMove === "scissors") ||
+      (userMove === "paper" && computerMove === "rock") ||
+      (userMove === "scissors" && computerMove === "paper")
+    ) {
+      alert("You win");
+      userScore++;
+      userWins ++;
+    } else {
+      alert("You lose");
+      userScore--;
+      userLoss ++;
+    }
+  }
+  
+  function loopGame() {
+  let repeat = prompt("Do you want to play again?").toLowerCase()
+  
+  if (repeat === "yes") {
+      playGame()
+  }
+  else {
+      alert(`Game over:\n Wins: ${userWins}\n Losses: ${userLoss}\n Ties: ${userTies}\n Number of games played: ${numGames}\nYour score is: ${userScore}`)
+  }
+  
+  }
+  
+  //test
+  function playGame(){
+  let userMove = getUserMove();
+  let computerMove = getComputerMove();
+  alertMoves(userMove, computerMove);
+  getOutcome(userMove, computerMove);
+  loopGame();
+  }
+  playGame()
+  
+  
