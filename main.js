@@ -20,18 +20,8 @@ let userScore = 0;
 let userWins = 0;
 let userLoss = 0;
 let userTies = 0;
-function playGame(move) {
- let userMove = move;
- numGames++
- let computerMove = getComputerMove()
- console.log(computerMove)
-alertMoves(userMove, computerMove)
-setTimeout(()=>getOutcome(userMove, computerMove), 1000)
-//setTimeout(()=>showStats())
-showStats()
-document.querySelector("#playAgain").style.display = "block"
-document.querySelector("#playAgain").addEventListener("click", () => loopGame())
-}
+
+
 //get user move
 //triggers the playgame function with the move as an argument
 document.querySelector("#RockButton").addEventListener("click",() => playGame("rock"));
@@ -48,13 +38,9 @@ function getComputerMove() {
 }
 
 //inform user about the moves
-
 function alertMoves(userMove, computerMove) {
   document.querySelector("#moves").textContent = `Your move is ${userMove} and the computer's move is ${computerMove}`
 }
-
-
-
 
 //compare user move and computerMove
 function getOutcome(userMove, computerMove) {
@@ -80,7 +66,7 @@ function getOutcome(userMove, computerMove) {
     userLoss++;
   }
 }
-
+//update stats
 function showStats() {
   document.querySelector("#numGames").textContent = `Games Played: ${numGames}` 
   document.querySelector("#score").textContent = `Score: ${numGames}` 
@@ -88,16 +74,21 @@ function showStats() {
   document.querySelector("#losses").textContent = ` Losses: ${userLoss}` 
   document.querySelector("#ties").textContent = `Ties: ${userTies}`
 }
-// //test
-// function playGame() {
-//   let userMove = getUserMove();
-//   let computerMove = getComputerMove();
-//   alertMoves(userMove, computerMove);
-//   getOutcome(userMove, computerMove);
-//   loopGame();
-// }
-// playGame();
+
 function loopGame() {
   document.querySelector("#result").textContent = ""
   document.querySelector("#moves").textContent = ""
 }
+
+function playGame(move) {
+  let userMove = move;
+  numGames++
+  let computerMove = getComputerMove()
+  console.log(computerMove)
+ alertMoves(userMove, computerMove)
+ setTimeout(()=>getOutcome(userMove, computerMove), 1500)
+ setTimeout(()=>showStats(),1500)
+ //showStats()
+ setTimeout(()=> {document.querySelector("#playAgain").style.display = "block"}, 1500)
+ document.querySelector("#playAgain").addEventListener("click", () => loopGame())
+ }

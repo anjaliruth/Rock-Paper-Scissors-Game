@@ -7,6 +7,7 @@ html {
 
 body {
     background-color: #B1CC74;
+    
     width: 100%;
     height: 100%;
     display: flex;
@@ -24,9 +25,11 @@ body {
     width: auto;
     height: 100px;
     text-align: center;
+    
 }
 #moves, #result {
-color: #E8FCC2
+color: #E8FCC2;
+font-weight: 400px;
 }
 
 #title{
@@ -49,13 +52,14 @@ color: #E8FCC2
     box-shadow: 3px 3px #FBDCE2;
     border-radius: 3px;
     margin-right: 20px;
-    width: 70px;
-    height: 30px;
+    width: 100px;
+    height: 40px;
+    font-size: 20px;
 
 
 }
 #playAgain {
-    width: 100px;
+    width: 150px;
 }
 
 #stats {
