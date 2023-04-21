@@ -1,12 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Rock, Paper or Scissors</title>
-</head>
-<body>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <p id="title">🪨 🧻 ✂️</p>
+    <div id="buttons">
+      <button class="choice" id="RockButton">Rock</button>
+      <button class="choice" id="PaperButton">Paper</button>
+      <button class="choice" id="ScissorsButton">Scissors</button>
+    </div>
+    <div id="displayResults">
+      <p id="moves"></p>
+      <p id="result"></p>
+    </div>
+    <div id="stats">
+      <p id="numGames">Games Played:</p>
+      <p id="score">Score:</p>
+      <p id="wins">Wins: </p>
+      <p id="losses">Losses: </p>
+      <p id="ties">Ties: </p>
+    </div>
+    <div id="repeat">
+      <button class="choice" hidden id="playAgain">Play Again</button>
+    </div>
     <script src="main.js"></script>
-</body>
+  </body>
 </html>
